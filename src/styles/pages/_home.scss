@@ -1,0 +1,9 @@
+@use "../abstracts/" as *;
+
+.poke-home {
+  padding: 10px;
+
+  .home-title {
+    text-align: center;
+  }
+}
