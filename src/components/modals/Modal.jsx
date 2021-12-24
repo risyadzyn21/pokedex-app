@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import pokeball from "../../assets/png/Pokeball.png";
 
 function Modal({ setOpenModal, pokemon }) {
   const [pokemonDetails, setPokemonDetails] = useState({});
