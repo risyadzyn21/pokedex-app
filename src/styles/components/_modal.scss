@@ -15,60 +15,70 @@
 }
 
 .modalContainer {
-  width: 200px;
+  width: 500px;
+  max-height: 500px;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
+  gap: 20px;
   flex-direction: column;
   padding: 25px;
+  position: relative;
 
-  .footer {
-    flex: 20%;
+  .pokemon-header {
     display: flex;
-    justify-content: center;
+    position: sticky;
+    top: 0;
     align-items: center;
+    width: 100%;
+    gap: 20px;
+    background-color: $background-white;
 
-    button {
+    .pokemon-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 150px;
-      height: 30px;
-      margin: 10px;
-      border: none;
-      background-color: $color-primary;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
+      height: 150px;
+      align-items: center;
+      background-color: $background-gray;
+      border-radius: 5px;
+
+      img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    .pokemon-info-adv {
+      span {
+        color: $font-grey;
+      }
     }
   }
-}
 
-.titleCloseBtn {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10px;
-}
+  .pokemon-details {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    overflow-y: auto;
 
-.titleCloseBtn button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
+    .pokemon-details-title {
+      margin-bottom: 5px;
+      color: $color-primary;
+      font-weight: bold;
+    }
 
-#cancelBtn {
-  background-color: $indicator-red;
-}
+    .pokemon-details-left {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
-.edit-modal-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.input-to-do {
-  min-height: 30px;
-  border-radius: 5px;
-  border: none;
-  border-right: 3px solid $color-primary-dark;
-  border-left: 3px solid $color-primary-dark;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    .pokemon-details-right,
+    .pokemon-details-left {
+      width: 50%;
+    }
+  }
 }
