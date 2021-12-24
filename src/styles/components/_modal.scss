@@ -78,7 +78,20 @@
 
     .pokemon-details-right,
     .pokemon-details-left {
-      width: 50%;
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .pokemon-details {
+    display: flex;
+    flex-direction: column;
+    // text-align: center;
+    justify-content: center;
+
+    .pokemon-details-abilities {
+      margin-bottom: 20px;
     }
   }
 }

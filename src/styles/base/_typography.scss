@@ -1,3 +1,5 @@
+@use "../abstracts/" as *;
+
 body {
   font-family: "Montserrat", sans-serif;
   scroll-behavior: smooth;
@@ -6,5 +8,5 @@ body {
 h1 {
   font-family: "Pokemon Solid", sans-serif;
   font-size: 50px;
-  -webkit-text-stroke: 2px blue;
+  -webkit-text-stroke: 2px $font-blue;
 }

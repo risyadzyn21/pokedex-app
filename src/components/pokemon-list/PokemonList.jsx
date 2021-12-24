@@ -2,16 +2,21 @@ import api from "../../services/api";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Modal from "../modals/Modal";
+import pokeball from "../../assets/png/Pokeball.png";
+import Loading from "../loading/Loading";
 
 function PokemonList() {
   const [items, setItems] = useState(0);
   const [pokemons, setPokemons] = useState([]);
   const [activePokemon, setActivePokemon] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     api.get(`/pokemon?offset=${items}&limit=100`).then((res) => {
       setPokemons([...pokemons, ...res.data.results]);
+      setIsLoading(false);
     });
   }, [items]);
 
@@ -22,6 +27,7 @@ function PokemonList() {
 
   return (
     <div>
+      {isLoading ? <Loading /> : ""}
       <InfiniteScroll
         dataLength={pokemons.length}
         next={() => setItems(items + 100)}
@@ -30,7 +36,7 @@ function PokemonList() {
       >
         {pokemons
           .sort((a, b) => a.name.localeCompare(b.name))
-          .map((pokemon) => {
+          ?.map((pokemon) => {
             return (
               <div
                 key={pokemon.name}
@@ -39,7 +45,10 @@ function PokemonList() {
                   dataModal(pokemon);
                 }}
               >
-                <div className="poke-name">{pokemon.name}</div>
+                <div className="poke-name">
+                  {pokemon.name}
+                  <img src={pokeball} alt="pokeball" />
+                </div>
               </div>
             );
           })}

@@ -1,13 +1,16 @@
-import api from "../../services/api";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import pokeball from "../../assets/png/Pokeball.png";
 
 function Modal({ setOpenModal, pokemon }) {
   const [pokemonDetails, setPokemonDetails] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     axios.get(pokemon.url).then((res) => {
       setPokemonDetails(res.data);
+      setIsLoading(false);
     });
   }, [pokemon]);
 
@@ -24,29 +27,39 @@ function Modal({ setOpenModal, pokemon }) {
           e.stopPropagation();
         }}
       >
-        <div className="pokemon-header">
-          <div className="pokemon-img">
-            <img
-              src={pokemonDetails?.sprites?.front_default}
-              alt={pokemonDetails?.name}
-            />
+        {isLoading ? (
+          <div className="poke-loading">
+            <div>Please Wait . . .</div>
           </div>
-          <div className="pokemon-info">
-            <div>#{pokemonDetails.id}</div>
-            <h2>{pokemonDetails.name}</h2>
-            <div className="pokemon-info-adv">
-              <div>
-                Base Exp <span>{pokemonDetails.base_experience}</span>
-              </div>
-              <div>
-                Weight <span>{pokemonDetails.weight}</span>
-              </div>
-              <div>
-                Height <span>{pokemonDetails.height}</span>
+        ) : (
+          ""
+        )}
+        <div>
+          <div className="pokemon-header">
+            <div className="pokemon-img">
+              <img
+                src={pokemonDetails?.sprites?.front_default}
+                alt={pokemonDetails?.name}
+              />
+            </div>
+            <div className="pokemon-info">
+              <div>#{pokemonDetails.id}</div>
+              <h2>{pokemonDetails.name}</h2>
+              <div className="pokemon-info-adv">
+                <div>
+                  Base Exp <span>{pokemonDetails.base_experience}</span>
+                </div>
+                <div>
+                  Weight <span>{pokemonDetails.weight}</span>
+                </div>
+                <div>
+                  Height <span>{pokemonDetails.height}</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
         <div className="pokemon-details">
           <div className="pokemon-details-left">
             <div className="pokemon-details-stats">
